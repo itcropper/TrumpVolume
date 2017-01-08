@@ -27,6 +27,7 @@ app.use('/public/img', express.static(__dirname + '/content/images'));
 
 var PORT = process.env.PORT || 8000;
 var MONGOOSE_PORT =
+  process.env.MONGODB_URI ||
   process.env.MONGOLAB_URI || 
   process.env.MONGOHQ_URL  || 
   'mongodb://localhost:27017;';
