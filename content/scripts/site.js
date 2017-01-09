@@ -12,6 +12,7 @@ $(function () {
       strTime = hours + ':' + minutes + ' ' + ampm;
       return strTime;
     }
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     
     var hc = function(){
         $('.hc-trump-charts').each(function(i, v){
@@ -25,7 +26,7 @@ $(function () {
                 xAxis: {
                     categories: instances.map(c => {
                         var date = new Date(c.time);
-                        return `${(date.getMonth() + 1)}-${(date.getDate())}-${(date.getFullYear())} ${formatAMPM(date)}`;
+                        return `${months[date.getMonth() + 1]} ${(date.getDate())}, ${formatAMPM(date)}`;
                     })
                 },
                 yAxis: {

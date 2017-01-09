@@ -80,13 +80,13 @@ function getInstances(req, res) {
 
 function getDisplay(render, sorter = "count"){
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var day = 1000 * 60 * 60 * 24;
     NewsSave
     .find({})
     .exec((err, data) => {
         if(err){
             return console.log(err);
         }
-        var day = 1000 * 60 * 60 * 24;
         var d = data.map((m) => {
             var time = m.instances[0].time,
                 daySpan = (months[time.getMonth() + 1])+ " "+ (time.getDate()) + ", " + time.getFullYear();
