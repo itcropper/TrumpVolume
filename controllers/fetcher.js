@@ -96,7 +96,7 @@ function getDisplay(render, sorter = "count"){
                 count : (m.instances.length ? m.instances[0].count : 0),
                 average: (m.instances.reduce((p, c) => p + c.count, 0) / m.instances.length).toFixed(2),
                 span: daySpan,
-                instances: m.instances.map(n => ({time: n.time, count: n.count})).reverse()
+                instances: m.instances.map(n => ({time: n.time, count: n.count}))
                 
             };
         }).sort((a, b) => {
