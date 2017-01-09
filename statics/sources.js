@@ -40,8 +40,8 @@ module.exports = [
         url: "http://www.usatoday.com/"
     },
     {
-        name: "LA Times",
-        url: "http://www.latimes.com/"
+        name: "Vox",
+        url: "http://www.vox.com/"
     },
     {
         name: "ABC News",
