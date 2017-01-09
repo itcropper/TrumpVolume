@@ -42,8 +42,13 @@ mongoose.connect(MONGOOSE_PORT, function (err, res) {
   }
 });
 
-app.get('/', function(req, res){
-    fetcher.display(data => res.render("home", {sources: data}));
+app.get('/', (req, res) => fetcher.display(data => res.render("home", {sources: data})));
+
+app.get('/cards/:srt', (req, res) => {
+    console.log(req.params);
+    fetcher.display(data => {
+        res.render("grid", {layout:false, sources: data})
+    }, req.params.srt);
 });
 
 app.get('/data',fetcher.fetch);

@@ -9,25 +9,25 @@ var mongoose = require('mongoose'),
 
 var sixHours = 1000 * 60 * 60 * 6;
 
-var getCount = function(text, cb, word = "Trump") {
+var getCount = function(text, cb, word = " Trump") {
     var substrings = text.split(word);
     cb(substrings.length - 1);
 }
 
 function start() {
 
-    var run = function() {
+    var run = () => {
 
         var time = new Date();
 
-        sources.map(function(src) {
-            request(src.url, function(error, response, html) {
+        sources.map(src => {
+            request(src.url, (error, response, html) => {
                 if (!error) {
                     var $ = cheerio.load(html);
-                    getCount($('body').text(), function(count) {
+                    getCount($('body').text(), (count) => {
 
                         var instance = {
-                            count: count,
+                            count: count, 
                             time: time
                         };
 
@@ -51,10 +51,7 @@ function start() {
                                 new: true,
                                 setDefaultsOnInsert: true
                             },
-                            function(err, data) {
-                                console.log('>>>data ' + err || data);
-
-                            }
+                            (err, data) => console.log('>>>data ' + (err || data.sourceName))
                         );
                     });
                 }
@@ -81,7 +78,8 @@ function getInstances(req, res) {
 
 }
 
-function getDisplay(render){
+function getDisplay(render, sorter = "count"){
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     NewsSave
     .find({})
     .exec((err, data) => {
@@ -90,16 +88,22 @@ function getDisplay(render){
         }
         var day = 1000 * 60 * 60 * 24;
         var d = data.map((m) => {
-            
+            var time = m.instances[m.instances.length - 1].time,
+                daySpan = (months[time.getMonth() + 1])+ " "+ time.getDate() + ", " + time.getFullYear();
             return {
                 src: m._id,
                 name: m.sourceName,
                 count : (m.instances.length ? m.instances[0].count : 0),
-                average: (m.instances.reduce((p, c) => p + c.count, 0) / m.instances.length),
-                span: parseInt((m.instances[m.instances.length - 1].time.getTime() - m.instances[0].time.getTime()) / (day)),
-                instances: m.instances.map(n => {return {time: n.time, count: n.count};}).reverse()
+                average: (m.instances.reduce((p, c) => p + c.count, 0) / m.instances.length).toFixed(2),
+                span: daySpan,
+                instances: m.instances.map(n => ({time: n.time, count: n.count})).reverse()
                 
             };
+        }).sort((a, b) => {
+            if(sorter == "average"){
+                return b.average - a.average;
+            }
+            return b.count - a.count;  
         });
         render(d);
     });

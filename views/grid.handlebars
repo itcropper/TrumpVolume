@@ -1,0 +1,23 @@
+
+<div class="pure-g base-grid">
+
+    {{#each sources}}
+
+    <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+        <div class="child-grid-box">
+
+            <a class="unstyled" href="{{this.src}}">
+                <h3 class="content-subhead">
+                    <span class="text-left">{{this.name}}</span>
+                    <span class="text-right text-red"><i class="fa fa-bullhorn"></i>{{this.count}}</span>
+                </h3>
+            </a>
+            <hr />
+            <p>The average since {{this.span}} days is {{this.average}} Trumps</p>
+            <div id="{{this.src}}" class="hc-trump-charts" data-instances="{{JSON2string this.instances}}" style="width:100% height: 200px; margin: 0 auto"></div>
+        </div>
+    </div>
+
+    {{/each}}
+
+</div>
