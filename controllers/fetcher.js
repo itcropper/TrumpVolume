@@ -88,12 +88,12 @@ function getDisplay(render, sorter = "count"){
         }
         var day = 1000 * 60 * 60 * 24;
         var d = data.map((m) => {
-            var time = m.instances[m.instances.length - 1].time,
+            var time = m.instances[0].time,
                 daySpan = (months[time.getMonth() + 1])+ " "+ (time.getDate() - 1) + ", " + time.getFullYear();
             return {
                 src: m._id,
                 name: m.sourceName,
-                count : (m.instances.length ? m.instances[0].count : 0),
+                count : (m.instances.length ? m.instances[m.instances.length - 1].count : 0),
                 average: (m.instances.reduce((p, c) => p + c.count, 0) / m.instances.length).toFixed(2),
                 span: daySpan,
                 instances: m.instances.map(n => ({time: n.time, count: n.count}))
