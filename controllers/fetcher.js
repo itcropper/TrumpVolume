@@ -62,7 +62,7 @@ function start() {
 
     var intv = setInterval(run, sixHours);
 
-    run();
+    //run();
 }
 
 function getInstances(req, res) {
@@ -99,7 +99,7 @@ function getDisplay(render, sorter = "count"){
                 instances: m.instances.map(n => ({time: n.time, count: n.count}))
                 
             };
-        }).sort((a, b) => {
+        }).sort((b,a) => {
             if(sorter == "average"){
                 return b.average - a.average;
             }

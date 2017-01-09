@@ -17,17 +17,15 @@ $(function () {
     var hc = function(){
         $('.hc-trump-charts').each(function(i, v){
             var instances = $(v).data('instances')
-                .sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+                .map(a => a.time.getMonth ? a : {time: new Date(a.time), count: a.count})
+                .sort((a,b) => a.time.getTime() - b.time.getTime());
             Highcharts.chart($(v).attr('id'), {
                 title: {
                     text: ' ',
                     x: -20 //center
                 },
                 xAxis: {
-                    categories: instances.map(c => {
-                        var date = new Date(c.time);
-                        return `${months[date.getMonth() + 1]} ${(date.getDate())}, ${formatAMPM(date)}`;
-                    })
+                    categories: instances.map(c => `${months[c.time.getMonth() + 1]} ${(c.time.getDate())}, ${formatAMPM(c.time)}`)
                 },
                 yAxis: {
                     title: {
