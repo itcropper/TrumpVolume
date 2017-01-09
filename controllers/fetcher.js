@@ -9,9 +9,9 @@ var mongoose = require('mongoose'),
 
 var sixHours = 1000 * 60 * 60 * 6;
 
-var getCount = function(text, cb, word = " Trump") {
-    var substrings = text.split(word);
-    cb(substrings.length - 1);
+var getCount = function(html, $, cb, word = "Trump") {
+    var text = html.toArray().reduce((p, c) => p + $(c).text(), "");
+    cb(text.split("Trump").length - 1);
 }
 
 function start() {
@@ -24,7 +24,7 @@ function start() {
             request(src.url, (error, response, html) => {
                 if (!error) {
                     var $ = cheerio.load(html);
-                    getCount($('body').text(), (count) => {
+                    getCount($('body a, body p'), $, (count) => {
 
                         var instance = {
                             count: count, 
