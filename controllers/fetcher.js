@@ -37,8 +37,8 @@ function start() {
                                 "$push": {
                                     "instances": {
                                         $each: [instance],
-                                        $sort: {date: 1},
-                                        $slice: -12
+                                        $sort: {date: -1},
+                                        $slice: -12 
                                     },
                                     
                                 },
@@ -62,7 +62,7 @@ function start() {
 
     var intv = setInterval(run, sixHours);
 
-    //run();
+    run();
 }
 
 function getInstances(req, res) {

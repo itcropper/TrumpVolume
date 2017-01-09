@@ -37,9 +37,6 @@ $(function () {
                         color: '#808080'
                     }]
                 },
-                tooltip: {
-                    valueSuffix: '°C'
-                },
                 legend: {
                     layout: 'vertical',
                     align: 'right',
