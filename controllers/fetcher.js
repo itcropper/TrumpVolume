@@ -89,7 +89,7 @@ function getDisplay(render, sorter = "count"){
         var day = 1000 * 60 * 60 * 24;
         var d = data.map((m) => {
             var time = m.instances[0].time,
-                daySpan = (months[time.getMonth() + 1])+ " "+ (time.getDate() - 1) + ", " + time.getFullYear();
+                daySpan = (months[time.getMonth() + 1])+ " "+ (time.getDate()) + ", " + time.getFullYear();
             return {
                 src: m._id,
                 name: m.sourceName,
