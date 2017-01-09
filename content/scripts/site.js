@@ -15,6 +15,11 @@ $(function () {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     
     var hc = function(){
+        
+        var highestCount = Math.max.apply(Math, $('.hc-trump-charts').map((i, v) => 
+                              Math.max.apply(Math, $(v).data('instances').map((val, index) => 
+                                val.count))));
+        
         $('.hc-trump-charts').each(function(i, v){
             var instances = $(v).data('instances')
                 .map(a => a.time.getMonth ? a : {time: new Date(a.time), count: a.count})
@@ -32,7 +37,7 @@ $(function () {
                         text: ' '
                     },
                     min:0,
-                    max:100,
+                    max:highestCount,
                     plotLines: [{
                         value: 0,
                         width: 1,

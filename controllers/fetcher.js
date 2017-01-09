@@ -62,7 +62,7 @@ function start() {
 
     var intv = setInterval(run, sixHours);
 
-    run();
+    //run();
 }
 
 function getInstances(req, res) {
