@@ -1,4 +1,18 @@
 $(function () {
+    
+
+    function formatAMPM(date, callback) {
+      var hours = date.getHours(),
+          minutes = date.getMinutes(),
+          ampm = hours >= 12 ? 'pm' : 'am',
+          strTime = '';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0'+minutes : minutes;
+      strTime = hours + ':' + minutes + ' ' + ampm;
+      return strTime;
+    }
+    
     var hc = function(){
         $('.hc-trump-charts').each(function(i, v){
             var instances = $(v).data('instances')
@@ -11,7 +25,7 @@ $(function () {
                 xAxis: {
                     categories: instances.map(c => {
                         var date = new Date(c.time);
-                        return `${(date.getMonth() + 1)}-${(date.getDate())}-${(date.getFullYear())} ${(date.getHours())}:${date.getMinutes()}`;
+                        return `${(date.getMonth() + 1)}-${(date.getDate())}-${(date.getFullYear())} ${formatAMPM(date)}`;
                     })
                 },
                 yAxis: {
