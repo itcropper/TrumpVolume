@@ -313,3 +313,6 @@ a.unstyled {
 .text-red {
     color:#b81614;
 }
+.emphasis {
+    font-weight: bold;
+}
