@@ -38,7 +38,7 @@ function start() {
                                     "instances": {
                                         $each: [instance],
                                         $sort: {date: 1},
-                                        $slice: -24
+                                        $slice: -12
                                     },
                                     
                                 },
