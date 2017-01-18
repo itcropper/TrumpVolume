@@ -79,7 +79,7 @@ $(function () {
         
         $('.hc-trump-charts').each(function(i, v){
             var instances = $(v).data('instances')
-                .map(a => a.time.getMonth ? a : {time: new Date(a.time), count: a.count})
+                .map(a => a.time.getMonth ? a : {time: roundMinutes(new Date(a.time)), count: a.count})
                 .sort((a,b) => a.time.getTime() - b.time.getTime());
             Highcharts.chart($(v).attr('id'), {
                 title: {
