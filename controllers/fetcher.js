@@ -99,6 +99,11 @@ function getDisplay(render, sorter = "count"){
                 instances: m.instances.map(n => ({time: n.time, count: n.count}))
                 
             };
+        }).filter(m => {
+          if(m.instances.length && m.average > 0) {
+              return true;
+          }  
+          return false;
         }).sort((a,b) => {
             if(sorter == "average"){
                 return b.average - a.average;

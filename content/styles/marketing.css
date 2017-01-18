@@ -299,7 +299,7 @@ a.unstyled {
 }
 
 .highcharts-contextbutton, 
-.highcharts-legend,
+.pure-g .highcharts-legend,
 .highcharts-credits {
     display:none;
 }
@@ -316,4 +316,13 @@ a.unstyled {
 }
 .emphasis {
     font-weight: bold;
+}
+
+.button-error {
+    background-color: #b81614 !important;
+    color:white !important;
+}
+.pure-button {
+    background-color:#e6e6e6;
+    color:black;
 }
