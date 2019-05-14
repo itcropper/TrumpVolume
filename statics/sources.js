@@ -7,10 +7,10 @@ module.exports = [
         name: "Huffington Post",
         url: "http://www.huffingtonpost.com/"
     },
-//    {
-//        name: "CNN",
-//        url: "http://www.cnn.com/"
-//    },
+   {
+       name: "CNN",
+       url: "http://www.cnn.com/"
+   },
     {
         name: "New York Times",
         url: "http://www.nytimes.com/"

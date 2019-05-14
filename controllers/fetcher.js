@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     http = require('http');
 
 
-var sixHours = 1000 * 60 * 60 * 6;
+var threeHours = 1000 * 60 * 60 * 3;
 
 var getCount = function(html, $, cb, word = "Trump") {
     var text = html.toArray().reduce((p, c) => p + $(c).text(), "");
@@ -60,9 +60,9 @@ function start() {
         });
     };
 
-    var intv = setInterval(run, sixHours);
+    var intv = setInterval(run, threeHours);
 
-    //run();
+    run();
 }
 
 function getInstances(req, res) {
@@ -89,7 +89,7 @@ function getDisplay(render, sorter = "count"){
         }
         var d = data.map((m) => {
             var time = m.instances[0].time,
-                daySpan = (months[time.getMonth() + 1])+ " "+ (time.getDate());
+                daySpan = (months[time.getMonth()])+ "  "+ (time.getDate());
             return {
                 src: m._id,
                 name: m.sourceName,

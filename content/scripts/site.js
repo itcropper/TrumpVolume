@@ -45,7 +45,7 @@ $(function () {
                 x: -20 //center
             },
             xAxis: {
-                categories: times.map(c => `${months[c.getMonth() + 1]} ${(c.getDate())}, ${formatAMPM(c)}`)
+                categories: times.map(c => `${months[c.getMonth()]} ${(c.getDate())}, ${formatAMPM(c)}`)
             },
             yAxis: {
                 title: {
@@ -87,7 +87,7 @@ $(function () {
                     x: -20 //center
                 },
                 xAxis: {
-                    categories: instances.map(c => `${months[c.time.getMonth() + 1]} ${(c.time.getDate())}, ${formatAMPM(c.time)}`)
+                    categories: instances.map(c => `${months[c.time.getMonth()]} ${(c.time.getDate())}, ${formatAMPM(c.time)}`)
                 },
                 yAxis: {
                     title: {
